@@ -141,6 +141,16 @@ export const config = {
     // it and to build services around it. You can either apply a single function or an array of
     // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
     // resolved to continue.
+
+    // afterEach: async function (test) {
+    //     // Clear cookies after each test
+    //     await browser.deleteAllCookies();
+    // },
+
+    before: async function (capabilities, specs) {
+        // Counter to track the number of repetitions
+        global.testRepetitions = 10;
+    },
     /**
      * Gets executed once before all workers get launched.
      * @param {object} config wdio configuration object
@@ -186,7 +196,7 @@ export const config = {
      * @param {object}         browser      instance of created browser/device session
      */
     before: function (capabilities, specs) {
-        browser.addCommand('Logout', async () => {
+        browser.addCommand('sauceLogout', async () => {
             await (await $('#react-burger-menu-btn')).click()
             await (await $('#logout_sidebar_link')).waitForClickable()
             await (await $('#logout_sidebar_link')).click()

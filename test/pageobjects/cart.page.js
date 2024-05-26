@@ -21,6 +21,10 @@ class CartPage extends Page {
         return $('h3[data-test="error"]');
     }
 
+    get removeButton () {
+        return $('#remove-sauce-labs-backpack');
+    }
+
     async getCartItemName() {
         return await this.cartItem.getText();
     }

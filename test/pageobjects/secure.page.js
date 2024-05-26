@@ -110,6 +110,8 @@ class SecurePage extends Page {
         for (const product of products) {
             const name = await product.$('[data-test="inventory-item-name"]').getText();
             const price = await product.$('div[data-test="inventory-item-price"]').getText();
+            await product.$('div.inventory_item_img img').waitForDisplayed();
+            // await (await $(selector)).waitForDisplayed()
             const image = await product.$('div.inventory_item_img img').isDisplayed();
 
             if (name === '') {

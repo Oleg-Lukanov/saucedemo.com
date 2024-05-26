@@ -6,10 +6,14 @@ import FooterPage from '../pageobjects/footer.page.js';
 import CheckoutPage from '../pageobjects/сheckout.page.js';
 
 describe('My application', () => {
-
     beforeEach(async () => {
         await LoginPage.open()
     }); 
+
+    // after(async () => {
+    //     // await browser.deleteAllCookies();
+    //     await browser.sauceL
+    // });
 
     it('001 should login with valid credentials', async () => {
         await LoginPage.login('standard_user', 'secret_sauce')
@@ -93,7 +97,6 @@ describe('My application', () => {
         } else if (LoginPage.isPasswordFilled) {
             throw new Error("Password field is filled.");
         }
-
         
     })
 
@@ -152,6 +155,7 @@ describe('My application', () => {
 
         expect(cartItemName).toBe('Sauce Labs Backpack');
 
+        await CartPage.removeButton.click()
     })
 
     it('006 should sorting', async () => {
@@ -205,7 +209,6 @@ describe('My application', () => {
                 });
     
                 expect(priceValues).toEqual(sortedPrices, `Sorting by price in ${order} order failed`);
-
             }
         }
     });
@@ -246,10 +249,12 @@ describe('My application', () => {
         });
 
 
-    it('008 should save the card after logging out', async () => {
+    it('008 should Valid Checkout', async () => {
         await LoginPage.login('standard_user', 'secret_sauce')
         await expect(browser).toHaveUrlContaining('inventory');
         await expect($('[data-test="title"]')).toHaveTextContaining('Products');
+        await (await $('#inventory_container')).waitForDisplayed()
+        // await browser.pause(1000);
 
         //Verify the number near the cart at the top right increase by 1
         let initialNumber = 0;
@@ -258,7 +263,7 @@ describe('My application', () => {
             initialNumber = parseInt(initialNumberText, 10);
         }
         
-        await SecurePage.addToCartButton.waitForDisplayed();
+        // await SecurePage.addToCartButton.waitForDisplayed();
         await SecurePage.addToCartButton.click();
         await browser.pause(1000);
 
@@ -267,6 +272,7 @@ describe('My application', () => {
         const newNumberText = await SecurePage.cartIconNumber.getText();
         const newNumber = parseInt(newNumberText, 10);
         expect(newNumber).toEqual(initialNumber + 1);
+        await browser.pause(1000);
 
         // Verify the product is present in the cart
         await SecurePage.goToCart();
@@ -311,7 +317,7 @@ describe('My application', () => {
         await expect(browser).toHaveUrlContaining('cart.html');
 
         const isEmpty = await CartPage.isCartEmpty();
-        expect(isEmpty).toBe(true);
+        expect(isEmpty).toBe(true, 'Cart is not empty');
 
         await CartPage.checkoutButton.click();
         await expect(browser).toHaveUrlContaining('cart.html');
