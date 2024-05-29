@@ -1,4 +1,4 @@
-import { $ } from '@wdio/globals'
+// import { $ } from '@wdio/globals'
 import Page from './page.js';
 
 /**
@@ -66,6 +66,14 @@ class CheckoutPage extends Page {
     async isFieldFilled(field) {
         const value = await field.getValue();
         return value !== '';
+    }
+
+    async clickFinishButton() {
+        await this.finishButton.click();
+    }
+
+    async clickBackHomeButton() {
+        await this.backHomeButton.click();
     }
 }
 

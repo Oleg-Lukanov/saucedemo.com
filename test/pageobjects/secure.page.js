@@ -1,4 +1,4 @@
-import { $ } from '@wdio/globals'
+// import { $ } from '@wdio/globals'
 import Page from './page.js';
 
 /**
@@ -12,6 +12,11 @@ class SecurePage extends Page {
     get title () {
         return $('[data-test="title"]');
     }
+
+    get inventoryContainer () {
+        return $('#inventory_container');
+    }
+
     get burgerMenuBtn () {
         return $('button#react-burger-menu-btn');
     }
@@ -142,6 +147,26 @@ class SecurePage extends Page {
     async getDropdownOptionsLength() {
         const options = await this.dropdownOptions;
         return options.length;
+    }
+    
+    async clickBurgerMenuBtn() {
+        await this.burgerMenuBtn.click();
+    }
+    
+    async clickLogout() {
+        await this.logout.click();
+    }
+    
+    async clickAddToCartButton() {
+        await this.addToCartButton.click();
+    }
+    
+    async clickFilterIcon() {
+        await this.filterIcon.click();
+    }
+
+    async clickFilter(filter) {
+        await filter.click();
     }
 
 }

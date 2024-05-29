@@ -1,4 +1,4 @@
-import { $ } from '@wdio/globals'
+// import { $ } from '@wdio/globals'
 import Page from './page.js';
 
 /**
@@ -32,6 +32,15 @@ class CartPage extends Page {
     async isCartEmpty() {
         const items = await this.cardItemNames;
         return items.length === 0;
+    }
+    
+    async clickCheckoutButton() {
+        await this.checkoutButton.click();
+    }
+    
+    async clickRemoveButton() {
+        // await this.checkoutButton.click();
+        await this.removeButton.click()
     }
 
 }

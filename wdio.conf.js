@@ -147,10 +147,10 @@ export const config = {
     //     await browser.deleteAllCookies();
     // },
 
-    before: async function (capabilities, specs) {
-        // Counter to track the number of repetitions
-        global.testRepetitions = 10;
-    },
+    // before: async function (capabilities, specs) {
+    //     // Counter to track the number of repetitions
+    //     global.testRepetitions = 10;
+    // },
     /**
      * Gets executed once before all workers get launched.
      * @param {object} config wdio configuration object
@@ -195,13 +195,13 @@ export const config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    before: function (capabilities, specs) {
-        browser.addCommand('sauceLogout', async () => {
-            await (await $('#react-burger-menu-btn')).click()
-            await (await $('#logout_sidebar_link')).waitForClickable()
-            await (await $('#logout_sidebar_link')).click()
-          })
-    },
+    // before: function (capabilities, specs) {
+    //     browser.addCommand('sauceLogout', async () => {
+    //         await (await $('#react-burger-menu-btn')).click()
+    //         await (await $('#logout_sidebar_link')).waitForClickable()
+    //         await (await $('#logout_sidebar_link')).click()
+    //       })
+    // },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name

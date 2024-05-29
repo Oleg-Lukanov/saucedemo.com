@@ -1,4 +1,4 @@
-import { $ } from '@wdio/globals'
+// import { $ } from '@wdio/globals'
 import Page from './page.js';
 
 /**
@@ -24,11 +24,22 @@ class LoginPage extends Page {
         return $('h3[data-test="error"]');
     }
 
+    get nameErrorIcon () {
+        return $('#user-name + svg.error_icon');
+    }
+
+    get passErrorIcon () {
+        return $('#password + svg.error_icon');
+    }
+
+
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
     async login (username, password) {
+        await this.inputUsername.waitForDisplayed();
+        
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
 
@@ -63,6 +74,16 @@ class LoginPage extends Page {
     async isPasswordFieldObscured(field) {
         const type = await field.getAttribute('type');
         return type === 'password';
+    }
+
+    get errorInputField() { 
+        return $('.input_error.error'); 
+    }
+
+    async getErrorInputBorderColor() {
+        const element = await this.errorInputField;
+        const color = await element.getCSSProperty('border-bottom-color');
+        return color.parsed.hex;
     }
 
     /**
