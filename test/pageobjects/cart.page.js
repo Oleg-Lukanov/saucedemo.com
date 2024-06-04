@@ -39,7 +39,6 @@ class CartPage extends Page {
     }
     
     async clickRemoveButton() {
-        // await this.checkoutButton.click();
         await this.removeButton.click()
     }
 

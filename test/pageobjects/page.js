@@ -12,4 +12,10 @@ export default class Page {
     open (path) {
         return browser.url(`https://www.saucedemo.com/${path}`)
     }
+
+    async waitForSeconds(milliseconds) {
+        await browser.pause(milliseconds);      
+    }
+
+
 }

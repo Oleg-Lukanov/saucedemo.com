@@ -81,6 +81,10 @@ class SecurePage extends Page {
     get inventoryItemNames () {
         return $$('div[data-test="inventory-item"] [data-test="inventory-item-name"]');
     }
+
+    get inventoryItemName () {
+        return $('[data-test="inventory-item-name"]');
+    }
     
     get listPrices () {
         return $$('div[data-test="inventory-item-price"]');
@@ -88,6 +92,10 @@ class SecurePage extends Page {
     
     get inventoryItemImages () {
         return $$('div.inventory_item_img img');
+    }
+
+    get inventoryItemImage () {
+        return $('div.inventory_item_img img');
     }
     // Cart
 
@@ -113,11 +121,10 @@ class SecurePage extends Page {
         }
 
         for (const product of products) {
-            const name = await product.$('[data-test="inventory-item-name"]').getText();
-            const price = await product.$('div[data-test="inventory-item-price"]').getText();
-            await product.$('div.inventory_item_img img').waitForDisplayed();
-            // await (await $(selector)).waitForDisplayed()
-            const image = await product.$('div.inventory_item_img img').isDisplayed();
+            const name = await product.$(await this.inventoryItemName).getText();
+            const price = await product.$(await this.inventoryItemPrice).getText();
+            await product.$(await this.inventoryItemImage).waitForDisplayed();
+            const image = await product.$(await this.inventoryItemImage).isDisplayed();
 
             if (name === '') {
                 throw new Error('Product name is missing');
@@ -168,6 +175,8 @@ class SecurePage extends Page {
     async clickFilter(filter) {
         await filter.click();
     }
+
+   
 
 }
 

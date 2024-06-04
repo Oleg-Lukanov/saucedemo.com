@@ -60,7 +60,6 @@ describe('My application', () => {
         await loginPage.login('standard_user', 'secret_sauce')
         // await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
         await expect(browser).toHaveUrlContaining('inventory');
-        // await securePage.burgerMenuBtn.click();
         await securePage.clickBurgerMenuBtn();
 
         const elementsToCheck = [
@@ -101,7 +100,7 @@ describe('My application', () => {
         }
 
         await securePage.clickAddToCartButton();
-        await browser.pause(1000);
+        await securePage.waitForSeconds(1000);
 
         const newNumberText = await securePage.cartIconNumber.getText();
         const newNumber = parseInt(newNumberText, 10);
@@ -146,7 +145,7 @@ describe('My application', () => {
         expect(cartItemName).toBe('Sauce Labs Backpack');
 
         await cartPage.clickRemoveButton();
-        await browser.pause(1000);
+        await securePage.waitForSeconds(1000);
 
     })
 
@@ -216,32 +215,12 @@ describe('My application', () => {
         ];
 
         await loginPage.login('standard_user', 'secret_sauce') 
-
+        
         for (const { name, icon, urlPart } of socialMediaLinks) {
-
-            const originalWindow = await browser.getWindowHandle();
-
-            await footerPage.clickIcon(icon)
-
-            await browser.waitUntil(async () => {
-                const windowHandles = await browser.getWindowHandles();
-                return windowHandles.length === 2;
-            }, {
-                timeout: 5000,
-                timeoutMsg: `Expected a new window to open after clicking ${name} icon`
-            });
-
-            const windowHandles = await browser.getWindowHandles();
-            const newWindowHandle = windowHandles.find(handle => handle !== originalWindow);
-            await browser.switchToWindow(newWindowHandle);
-
-            await expect(browser).toHaveUrlContaining(urlPart);
-
-            await browser.closeWindow();
-            await browser.switchToWindow(originalWindow);
-            await browser.pause(1000);
+            await footerPage.verifySocialMediaLink(name, icon, urlPart);
         }
-        });
+
+    });
 
 
     it('008 should Valid Checkout', async () => {
@@ -249,7 +228,7 @@ describe('My application', () => {
         await expect(browser).toHaveUrlContaining('inventory');
         await expect(securePage.title).toHaveTextContaining('Products');
         await (await securePage.inventoryContainer).waitForDisplayed()
-        // await browser.pause(1000);
+        
 
         //Verify the number near the cart at the top right increase by 1
         let initialNumber = 0;
@@ -259,16 +238,14 @@ describe('My application', () => {
         }
         
         // await securePage.addToCartButton.waitForDisplayed();
-        // await securePage.addToCartButton.click();
         await securePage.clickAddToCartButton();
-        await browser.pause(1000);
+        await securePage.waitForSeconds(1000);
 
         await expect(securePage.cartIconNumber).toBeDisplayed();
 
         const newNumberText = await securePage.cartIconNumber.getText();
         const newNumber = parseInt(newNumberText, 10);
         expect(newNumber).toEqual(initialNumber + 1);
-        await browser.pause(1000);
 
         // Verify the product is present in the cart
         await securePage.goToCart();
