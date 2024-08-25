@@ -1,0 +1,12 @@
+version: '3'
+services:
+  wdio:
+    build: .
+    volumes:
+      - .:/usr/src/app  # Mount the current directory to the container
+    command: npm run test:chrome  # Command to run tests in Chrome
+  selenium:
+    image: selenium/standalone-chrome  # Use the Selenium Chrome image
+    ports:
+      - "4444:4444"  # Expose the Selenium server port
+    shm_size: 2gb  # Increase the shared memory size

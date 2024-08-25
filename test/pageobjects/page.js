@@ -10,7 +10,8 @@ export default class Page {
     * @param path path of the sub page (e.g. /path/to/page.html)
     */
     open (path) {
-        return browser.url(`https://www.saucedemo.com/${path}`)
+        // return browser.url(`https://ultimateqa.com/simple-html-elements-for-automation/${path}`)
+        return browser.url(`/${path}`)
     }
 
     async waitForSeconds(milliseconds) {

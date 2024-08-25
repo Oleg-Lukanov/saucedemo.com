@@ -1,5 +1,6 @@
 // import { $ } from '@wdio/globals'
 import Page from './page.js';
+import { faker } from '@faker-js/faker';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -37,6 +38,14 @@ class CheckoutPage extends Page {
         return $('button#back-to-products'); 
     }
 
+    get errorMessage() {
+        return $('h3[data-test="error"]'); 
+    }
+
+    // async getErrorMessageText() {
+    //     return this.errorMessage.getText();
+    // }
+
     async getSubtotalPrice() {
         const text = await this.subtotalLabel.getText();
         return parseFloat(text.replace('Item total: $', ''));
@@ -47,18 +56,17 @@ class CheckoutPage extends Page {
         await this.lastName.setValue(lastname);
         await this.postalCode.setValue(zipcode);
 
-        const isFirstnameFilled = await this.isFieldFilled(this.firstName);
-        const isLastnameFilled = await this.isFieldFilled(this.lastName);
-        const isZipcodeFilled = await this.isFieldFilled(this.postalCode);
+        // const isFirstnameFilled = await this.isFieldFilled(this.firstName);
+        // const isLastnameFilled = await this.isFieldFilled(this.lastName);
+        // const isZipcodeFilled = await this.isFieldFilled(this.postalCode);
 
-
-        if (!isFirstnameFilled) {
-            throw new Error("firstname field is not filled.");
-        } else if (!isLastnameFilled) {
-            throw new Error("lastname field is not filled.");
-        } else if (!isZipcodeFilled) {
-            throw new Error("postalCode field is not filled.");
-        }
+        // if (!isFirstnameFilled) {
+        //     throw new Error("firstname field is not filled.");
+        // } else if (!isLastnameFilled) {
+        //     throw new Error("lastname field is not filled.");
+        // } else if (!isZipcodeFilled) {
+        //     throw new Error("postalCode field is not filled.");
+        // }
 
         await this.continueButton.click();
     }
