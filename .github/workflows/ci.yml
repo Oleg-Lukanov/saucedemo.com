@@ -38,7 +38,7 @@ jobs:
 
       - name: Generate Allure Report
         run: |
-          npm run report
+          npm run allure:generate
         continue-on-error: true
 
       - name: Upload Allure Report

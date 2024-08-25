@@ -19,7 +19,9 @@
     "test:chrome": "cross-env BROWSER=chrome npx wdio run ./wdio.conf.chrome.js",
     "test:edge": "cross-env BROWSER=edge npx wdio run ./wdio.conf.edge.js",
     "test:single": "npx wdio run --spec ./test/specs/test.e2e.js",
-    "report": "allure generate allure-results --clean -o allure-report && allure open",
+    "report:generate:open": "allure generate allure-results --clean -o allure-report && allure open",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
     "docker:test": "docker-compose up --abort-on-container-exit --exit-code-from wdio",
     "test:firefox": "npx wdio run ./wdio.conf.firefox.js"
   },
