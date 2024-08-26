@@ -19,7 +19,7 @@ describe('My application', () => {
         await expect(securePage.cartButton).toBeDisplayed();
     })
 
-    it('002 should not login with invalid password', async () => {
+    it.only('002 should not login with invalid password', async () => {
         await loginPage.login('standard_user', 'qwerty')
 
         const borderColor = await loginPage.getErrorInputBorderColor();
