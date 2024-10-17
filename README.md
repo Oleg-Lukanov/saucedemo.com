@@ -59,7 +59,7 @@ Run all tests:
 Run tests in Chrome:
   ```bash
     npm run test:chrome
-
+```
 Run tests in Firefox:
   ```bash
     npm run test:firefox
