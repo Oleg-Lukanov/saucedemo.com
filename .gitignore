@@ -8,5 +8,5 @@ node_modules
 # MacOS
 .DS_Store
 
-allure-report/
-allure-result/
+allure-reports/
+allure-results/

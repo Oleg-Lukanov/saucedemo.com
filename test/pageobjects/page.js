@@ -18,5 +18,12 @@ export default class Page {
         await browser.pause(milliseconds);      
     }
 
+    get errorMessage() {
+        return $('h3[data-test="error"]'); 
+    }
+
+    get errorButton () {
+        return $('h3[data-test="error"]');
+    }
 
 }

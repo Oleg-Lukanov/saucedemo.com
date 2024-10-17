@@ -1,4 +1,4 @@
-import { config as baseConfig } from './wdio.conf.js';
+import { config as baseConfig } from '../wdio.conf.js';
 
 export const config = {
     ...baseConfig,
@@ -6,7 +6,10 @@ export const config = {
         maxInstances: 5,
         browserName: 'MicrosoftEdge',
         'ms:edgeOptions': {
-            args: ['--headless'],
+            // args: ['--headless'],
         },
+        specs: [
+            '../test/specs/**/*.js'
+        ],
     }],
 };

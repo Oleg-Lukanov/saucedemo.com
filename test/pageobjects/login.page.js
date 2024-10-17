@@ -21,9 +21,7 @@ class LoginPage extends Page {
         return $('#login-button');
     }
 
-    get errorButton () {
-        return $('h3[data-test="error"]');
-    }
+    
 
     get nameErrorIcon () {
         return $('#user-name + svg.error_icon');

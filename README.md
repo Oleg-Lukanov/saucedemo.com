@@ -32,10 +32,13 @@ A project for end-to-end testing using WebDriverIO, Allure Reporting, and Docker
   ```bash
    git clone https://github.com/your-username/your-repository.git
    cd your-repository
+   ```
+
 Install dependencies:
 
   ```bash
     npm install
+```
 
 Run tests (examples):
 
@@ -45,10 +48,12 @@ Run tests (examples):
     npm run test:edge
     Usage
     Running Specific Tests
+```
 
 Run all tests:
   ```bash
     npm run test
+```
 
 Run tests in Chrome:
   ```bash
@@ -57,25 +62,25 @@ Run tests in Chrome:
 Run tests in Firefox:
   ```bash
     npm run test:firefox
-
+```
 Run a single test file:
   ```bash
     npm run test:file -- --spec path/to/test.e2e.js
-
+```
 Generating and open Allure Reports
   ```bash
     npm run report
-
+```
 **Docker**
 
 Build Docker Image
 ```bash
 docker build -t wdio-test-image .
-
+```
 Run Docker Container
 ```bash
 docker run -it wdio-test-image
-
+```
 **GitHub Actions**
 This project uses GitHub Actions for CI/CD. The pipeline will run tests and deploy Allure reports to GitHub Pages.
 

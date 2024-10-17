@@ -19,7 +19,7 @@ describe('My application', () => {
         await expect(securePage.cartButton).toBeDisplayed();
     })
 
-    it.only('002 should not login with invalid password', async () => {
+    it('002 should not login with invalid password', async () => {
         await loginPage.login('standard_user', 'qwerty')
 
         const borderColor = await loginPage.getErrorInputBorderColor();
@@ -31,10 +31,10 @@ describe('My application', () => {
         const isIconPassDisplayed = await loginPage.passErrorIcon.isDisplayed();
         expect(isIconPassDisplayed).toBe(true);
 
-        // await expect(loginPage.errorButton).toHaveTextContaining(
+        // await expect(loginPage.errorMessage).toHaveTextContaining(
         //         'Epic sadface: Username and password do not match any user in this service')
 
-        const errorButtonText = await loginPage.errorButton.getText();
+        const errorButtonText = await loginPage.errorMessage.getText();
         expect(errorButtonText).toEqual(expect.stringContaining(
             'Epic sadface: Username and password do not match any user in this service'))
     })
@@ -51,10 +51,10 @@ describe('My application', () => {
         const isIconPassDisplayed = await loginPage.passErrorIcon.isDisplayed();
         expect(isIconPassDisplayed).toBe(true);
 
-        // await expect(loginPage.errorButton).toHaveTextContaining(
+        // await expect(loginPage.errorMessage).toHaveTextContaining(
         //         'Epic sadface: Username and password do not match any user in this service')
 
-        const errorButtonText = await loginPage.errorButton.getText();
+        const errorButtonText = await loginPage.errorMessage.getText();
         expect(errorButtonText).toEqual(expect.stringContaining(
             'Epic sadface: Sorry, this user has been locked out.'))
 
@@ -72,7 +72,7 @@ describe('My application', () => {
         const isIconPassDisplayed = await loginPage.passErrorIcon.isDisplayed();
         expect(isIconPassDisplayed).toBe(true);
 
-        const errorButtonText = await loginPage.errorButton.getText();
+        const errorButtonText = await loginPage.errorMessage.getText();
         expect(errorButtonText).toEqual(expect
             .stringContaining('Epic sadface: Username and password do not match any user in this service'))
     })
@@ -82,8 +82,8 @@ describe('My application', () => {
         await loginPage.inputPassword.setValue('password123');
         await loginPage.btnSubmit.click();
 
-        await expect(loginPage.errorButton).toBeDisplayed();
-        await expect(loginPage.errorButton).toHaveTextContaining('Epic sadface: Username is required');
+        await expect(loginPage.errorMessage).toBeDisplayed();
+        await expect(loginPage.errorMessage).toHaveTextContaining('Epic sadface: Username is required');
     });
 
     it('012  should not log in with empty password field', async () => {
@@ -91,16 +91,16 @@ describe('My application', () => {
         await loginPage.inputUsername.setValue('username123');
         await loginPage.btnSubmit.click();
 
-        await expect(loginPage.errorButton).toBeDisplayed();
-        await expect(loginPage.errorButton).toHaveTextContaining('Epic sadface: Password is required');
+        await expect(loginPage.errorMessage).toBeDisplayed();
+        await expect(loginPage.errorMessage).toHaveTextContaining('Epic sadface: Password is required');
     });
 
     it('013 should not log in when both fields are empty', async () => {
         await loginPage.open();
         await loginPage.btnSubmit.click();
 
-        await expect(loginPage.errorButton).toBeDisplayed();
-        await expect(loginPage.errorButton).toHaveTextContaining('Epic sadface: Username is required');
+        await expect(loginPage.errorMessage).toBeDisplayed();
+        await expect(loginPage.errorMessage).toHaveTextContaining('Epic sadface: Username is required');
     });
 
     it('004 should logout after clicking on the "Logout" button', async () => {
@@ -606,7 +606,7 @@ describe('My application', () => {
         await cartPage.clickCheckoutButton();
         await expect(browser).toHaveUrlContaining('cart.html');
         
-        await expect(cartPage.errorButton).toHaveTextContaining('Cart is empty')
+        await expect(cartPage.errorMessage).toHaveTextContaining('Cart is empty')
     })
     
     it.skip('010 should not Checkout without products in Card', async () => {
@@ -632,7 +632,7 @@ describe('My application', () => {
         // await expect(contactEmail).toBeEnabled()
         // await expect(contactButton).toBeClickable()
 
-        await expect(cartPage.errorButton).toHaveTextContaining('Cart is empty')
+        await expect(cartPage.errorMessage).toHaveTextContaining('Cart is empty')
     })
 })
 

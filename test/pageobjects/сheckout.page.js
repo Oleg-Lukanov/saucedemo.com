@@ -38,9 +38,9 @@ class CheckoutPage extends Page {
         return $('button#back-to-products'); 
     }
 
-    get errorMessage() {
-        return $('h3[data-test="error"]'); 
-    }
+    // get errorMessage() {
+    //     return $('h3[data-test="error"]'); 
+    // }
 
     // async getErrorMessageText() {
     //     return this.errorMessage.getText();

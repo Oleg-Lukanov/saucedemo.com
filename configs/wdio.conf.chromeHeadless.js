@@ -1,4 +1,4 @@
-import { config as baseConfig } from './wdio.conf.js';
+import { config as baseConfig } from '../wdio.conf.js';
 
 export const config = {
     ...baseConfig,
@@ -8,6 +8,9 @@ export const config = {
         'goog:chromeOptions': {
             args: ['--headless', '--disable-gpu'],
         },
+        specs: [
+            '../test/specs/**/*.js'
+        ],
     }],
 };
 

@@ -17,9 +17,9 @@ class CartPage extends Page {
         return $('button#checkout'); 
     }
 
-    get errorButton () {
-        return $('h3[data-test="error"]');
-    }
+    // get errorButton () {
+    //     return $('h3[data-test="error"]');
+    // }
 
     get removeButton () {
         return $('#remove-sauce-labs-backpack');
