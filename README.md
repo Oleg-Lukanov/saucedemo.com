@@ -46,9 +46,10 @@ Run tests (examples):
     npm run test:chrome
     npm run test:firefox
     npm run test:edge
+  ```
     Usage
     Running Specific Tests
-```
+
 
 Run all tests:
   ```bash
