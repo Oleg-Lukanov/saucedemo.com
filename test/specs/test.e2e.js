@@ -379,8 +379,6 @@ describe('My application', () => {
 
         await expect(checkoutPage.errorMessage).toBeDisplayed();
         await expect(checkoutPage.errorMessage).toHaveTextContaining('Error: First Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Error: First Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Postal code must be a number');
 
         // Remove item from card
         await securePage.goToCart();
@@ -433,8 +431,6 @@ describe('My application', () => {
 
         await expect(checkoutPage.errorMessage).toBeDisplayed();
         await expect(checkoutPage.errorMessage).toHaveTextContaining('Error: Last Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Error: Last Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Postal code must be a number');
 
         // Remove item from card
         await securePage.goToCart();
@@ -486,8 +482,6 @@ describe('My application', () => {
 
         await expect(checkoutPage.errorMessage).toBeDisplayed();
         await expect(checkoutPage.errorMessage).toHaveTextContaining('Error: Postal Code is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Error: Last Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Postal code must be a number');
 
         // Remove item from card
         await securePage.goToCart();
@@ -539,8 +533,6 @@ describe('My application', () => {
 
         await expect(checkoutPage.errorMessage).toBeDisplayed();
         await expect(checkoutPage.errorMessage).toHaveTextContaining('Error: Postal Code should be a number');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Error: Last Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Postal code must be a number');
     })
 
     it('018 should not checkout with empty info fields', async () => {
@@ -584,8 +576,6 @@ describe('My application', () => {
 
         await expect(checkoutPage.errorMessage).toBeDisplayed();
         await expect(checkoutPage.errorMessage).toHaveTextContaining('Error: First Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Error: Last Name is required');
-        // await expect(checkoutPage.getErrorMessageText()).toContain('Postal code must be a number');
 
         // Remove item from card
         await securePage.goToCart();
