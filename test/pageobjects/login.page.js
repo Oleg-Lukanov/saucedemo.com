@@ -1,14 +1,9 @@
-// import { $ } from '@wdio/globals'
 import Page from './page.js';
 import { faker } from '@faker-js/faker';
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
+
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
+    
     get inputUsername () {
         return $('#user-name');
     }
@@ -21,7 +16,6 @@ class LoginPage extends Page {
         return $('#login-button');
     }
 
-    
 
     get nameErrorIcon () {
         return $('#user-name + svg.error_icon');
@@ -54,13 +48,6 @@ class LoginPage extends Page {
         } else if (!isPasswordTypeCorrect) {
             throw new Error("Password field is not obscured (not of type 'password').");
         }
-
-        // await this.inputPassword.saveScreenshot('./test/specs/screenshots/filledPasswordField.png');
-        // await expect(this.inputPassword).toMatchElementSnapshot('filledPasswordField');
-
-        // const passwordField = await this.inputPassword;
-        // const result = await browser.checkElement(passwordField, 'filledPasswordField');
-        // assert.strictEqual(result.misMatchPercentage, 0, 'Password field does not match the baseline snapshot');
 
         await this.btnSubmit.click();
     }

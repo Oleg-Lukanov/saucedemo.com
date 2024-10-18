@@ -37,10 +37,7 @@ class SecurePage extends Page {
     get reset () {
         return $('#reset_sidebar_link');
     }
-    ////////////////////////////////////////
-    // get addToCart () {
-    //     return $('#add-to-cart-sauce-labs-backpack');
-    // }
+   
     
     get cartIconNumber () {
         return $('[data-test="shopping-cart-badge"]');
